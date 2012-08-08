@@ -17,13 +17,6 @@
 	--------------------------------------------------------------------------------------------------------------------
 	*/
 
-//INCLUDE VERSION NUMBER
-	//require_once('version.php');
-
-//INCLUDE CLASS
-	//include the class that controls the logic for your plug-in here
-	require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/plugin.class.php");
-
 //SHORTCODE
 	function ia_jsfiddle_display_by_shortcode($atts) {
 		//get data from short code
