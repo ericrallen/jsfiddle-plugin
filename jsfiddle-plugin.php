@@ -48,6 +48,6 @@
 		return $output;
 	}
 	//set up shortcode for display
-	add_shortcode('{shortcode name}','{function}');
+	add_shortcode('jsfiddle','ia_jsfiddle_display_by_shortcode');
 	
 ?>
