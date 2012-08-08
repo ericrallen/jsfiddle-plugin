@@ -18,7 +18,7 @@
 	*/
 
 //INCLUDE VERSION NUMBER
-	require_once('version.php');
+	//require_once('version.php');
 
 //INCLUDE CLASS
 	//include the class that controls the logic for your plug-in here
