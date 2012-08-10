@@ -1,7 +1,7 @@
 <?php
 	
 	/*
-		Plugin Name: JSFiddle Shortcode
+		Plugin Name: JSFiddle Shortcode InternetAlche.Me
 		Plugin URI: http://internetalche.me/
 		Description: Add JSFiddles via shortcode
 		Version: v0.1b
@@ -20,27 +20,27 @@
 	--------------------------------------------------------------------------------------------------------------------
 	*/
 
+	
+	//CLASSES
+
+	//include plugin classes
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddlePlugin.class.php'); //setup
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddle.class.php'); //shortcode display
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddleAPI.class.php'); //api interaction
+	
+
 	//OPTIONS
+	
 	$options = array(
-		'ia_jsfiddle_version_number' => '0.2b'
+		'ia_jsfiddle_version_number' => '0.2b',
+		'ia_jsfiddle_username_field' => 'iajsfiddle'
 	);
 	$shortcode = 'iajsfiddle';
 	$caps = array(
 		'ia_jsfiddle_options'
 	);
 
-	
-	//CLASSES
 
-	//include plugin classes
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/classes/IAJSFiddlePlugin.class.php'); //setup
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/classes/IAJSFiddle.class.php'); //shortcode display
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/classes/IAJSFiddleAPI.class.php'); //api interaction
-
-	//initialize setup class
-	$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance($);
-
-	
 	//SHORTCODE	
 	
 	function ia_jsfiddle_display_by_shortcode($atts) {
@@ -48,29 +48,32 @@
 		extract(
 			shortcode_atts(
 				array(
-					'user' => 'NULL',
-					'fiddle' => 'NULL',
-					'height' => '300px',
-					'width' => '100%',
-					'show' => 'NULL'
+					'fiddle' => '',
+					'height' => '',
+					'width' => '',
+					'show' => ''
 				), $atts
 			)
 		);
-		$fiddle['code'] = $fiddle;
-		$ia_jsfiddle = new IA_JSFiddle($user,$fiddle,$height,$width,$show);
-		$fiddle = $ia_jsfiddle->get_fiddle();
+		$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
+		$fiddle_array = array();
+		$fiddle_array['code'] = $fiddle;
+		$fiddle_array['user'] = $user;
+		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show);
+		$jsfiddle = $ia_jsfiddle->get_fiddle();
+		echo $jsfiddle;
 	}
 	//set up shortcode for display
-	if(!ia_js_fiddle_shortcode_exists('iajsfiddle')) {
-		add_shortcode('iajsfiddle','ia_jsfiddle_display_by_shortcode');
-	}
+	add_shortcode('iajsfiddle','ia_jsfiddle_display_by_shortcode');
 
 	
 	//ACTIVATION
 
 	//add plug-in options
 	function ia_jsfiddle_set_options() {
-		$ia_jsfiddle_plugin->activate();
+		//initialize setup class
+		$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance();
+		$ia_jsfiddle_plugin->activate($options,$shortcode,$caps);
 	}
 	//run when plug-in is activated
 	register_activation_hook(__FILE__,'ia_jsfiddle_set_options');
@@ -80,6 +83,8 @@
 	
 	//remove plug-in options
 	function ia_jsfiddle_clear_options() {
+		//initialize setup class
+		$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance();
 		$ia_jsfiddle_plugin->deactivate();
 	}
 	register_deactivation_hook(__FILE__,'ia_jsfiddle_clear_options');
@@ -88,7 +93,8 @@
 	//MISC
 	
 	//include plugin actions
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/actions/user.php'); //user based actions
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/actions/menu.php'); //menu based actions
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/user.php'); //user based actions
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/post.php'); //menu based actions
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/menu.php'); //menu based actions
 	
 ?>

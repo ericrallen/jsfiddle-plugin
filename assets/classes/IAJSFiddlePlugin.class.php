@@ -4,21 +4,14 @@
 	class IA_JSFiddle_Plugin {
 
 		private static $ia_instance;
-		private $options, $shortcode, $caps;
-
-		//create object
-		private function __construct($o,$s,$c) {
-			$this->options = $o;
-			$this->shortcode = $s;
-			$this->caps = $c;
-		}
+		private $options = array();
+		private $shortcode;
+		private $caps = array();
 
 		//impose singleton pattern
-		public static function get_instance(array $o = null,$s = null,array $c = null) {
-			if($v && $s && $c) {
-				if(!self::$ia_instance) {
-					self::$ia_instance = new IA_JSFiddle_Plugin($v,$s,$c);
-				}
+		public static function get_instance() {
+			if(!self::$ia_instance) {
+				self::$ia_instance = new IA_JSFiddle_Plugin();
 			}
 			return self::$ia_instance;
 		}
@@ -38,14 +31,16 @@
 		}
 
 		//add user capabilities
-		private function add_caps() {
+		/*private function add_caps() {
 	    	$min_cap = 'manage_options';
 	    	$grant = true;
+	    	global $wp_roles;
 	    	//iterate through all roles and add the capabilities
-	    	foreach($GLOBALS['wp_roles'] as $role_obj) {
+	    	foreach($wp_roles as $role => $info) {
+	    		$role_obj = get_role($role);
 	        	foreach($this->caps as $cap) {
-		        	if(!$role_obj->has_cap($cap) && $rol_obj->has_cap($min_cap)) {
-		        		$role_obj->add_cap($custom_cap, $grant);
+		        	if(!$role_obj->role_has_cap($role,$cap) && $role_obj->role_has_cap($role,$min_cap)) {
+		        		$role_obj->add_cap($cap, $grant);
 		        	}
 		    	}
 	    	}
@@ -61,15 +56,18 @@
 	    			}
 	    		}
 	    	}
-		}
+		}*/
 
 		//install and initialize the plug in
-		public function activate() {
+		public function activate($o,$s,$c) {
+			$this->options = $o;
+			$this->shortcode = $s;
+			$this->caps = $c;
 			//store version number
-			foreach($this->v as $opt => $val) {
+			foreach($this->options as $opt => $val) {
 				add_option($opt,$val);
 			}
-			$this->add_caps();
+			//$this->add_caps();
 		}
 
 		//disable some stuff that isn't useful if it's deactivated
@@ -84,7 +82,7 @@
 		public function uninstall() {
 			global $wpdb;
 			//remove user capability
-			$this->remove_caps();
+			//$this->remove_caps();
 			//remove options
 			foreach($this->v as $opt => $val) {
 				remove_option($opt);

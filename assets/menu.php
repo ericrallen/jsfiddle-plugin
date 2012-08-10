@@ -3,7 +3,7 @@
 	//actions for admin menu
 
 	//include files for each page
-	require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/pages/options.php");
+	require_once("pages/options.php");
 	
 	//add items to the admin menu
 	function ia_jsfiddle_menu() {
