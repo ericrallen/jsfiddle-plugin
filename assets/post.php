@@ -165,7 +165,8 @@
 						height = jQuery('#ia-fiddle-height').val();
 						width = jQuery('#ia-fiddle-width').val();
 						show = jQuery('#ia-fiddle-show').val();
-						var shortcode = '[iajsfiddle fiddle=\"' + id + '\" height=\"' + height + '\" width=\"' + width + '\" show=\"' + show + '\"]';
+						skin = jQuery('#ia-fiddle-skin').val();
+						var shortcode = '[iajsfiddle fiddle=\"' + id + '\" height=\"' + height + '\" width=\"' + width + '\" show=\"' + show + '\" skin=\"' + skin + '\"]';
 						var display = '<p><a href="javascript:void(0);" id="ia-fiddle-back-to-ops">Back to Options</a></p><p><label for="ia-fiddle-generated-shortcode">Copy + Paste the shortcode below: <br/><textarea name="ia-fiddle-generated-shortcode" id="ia-fiddle-generated-shortcode">' + shortcode + '</textarea></p><p><a href="javascript:void(0)" id="ia-fiddle-back-to-fiddles">Back to Fiddles</a></p>';
 						jQuery('#ia-fiddle-shortcode').html(display);
 						jQuery('#ia-fiddle-options').fadeOut(function() {
@@ -206,7 +207,7 @@
 			wp_register_script('crossdomain-ajax',plugins_url() . '/jsfiddle-plugin/assets/js/crossdomain-ajax/jquery.crossdomain-ajax.min.js',array('jquery'),'',false);
 			wp_enqueue_script('crossdomain-ajax');
 			//jsfiddle utils
-			wp_register_script('jsfiddle-utils',plugins_url() . '/jsfiddle-plugin/assets/js/jsfiddle-utils/jquery.jsfiddleutils.min.js',array('jquery','crossdomain-ajax'),'',false);
+			wp_register_script('jsfiddle-utils',plugins_url() . '/jsfiddle-plugin/assets/js/jsfiddle-utils/jquery.jsfiddle-utils.min.js',array('jquery','crossdomain-ajax'),'',false);
 			wp_enqueue_script('jsfiddle-utils');
 		}
 	}
