@@ -9,6 +9,8 @@ This shortcode pulls in a user's JSFiddle and allows configurable height, width,
 
 The plug-in creates a custom metabox on the Edit Post and Edit Page admin pages that contains a list of all the user's JSFiddles and allows them to generate a shortcode to be copied and pasted into the editor.
 
+The plug-in supports custom JSFiddle skins, and allows the admin to define a folder where custom skins will be uploaded.
+
 This plug-in is in its super-beta phase, functions, but requires some manual set up and has only been lightly tested
 
 It is a work in progress.
