@@ -10,6 +10,6 @@
 			return $contactmethods;
 		}
 	}
-	add_filter('user_contactmethods','update_contact_methods',10,1);
+	add_filter('user_contactmethods','update_contact_methods');
 
 ?>
