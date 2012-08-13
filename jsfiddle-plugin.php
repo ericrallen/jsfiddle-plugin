@@ -22,16 +22,7 @@
 
 	
 	//OPTIONS
-	
-	global $options, $shortcode, $caps;
-	$options = array(
-		'ia_jsfiddle_version_number' => '0.2b',
-		'ia_jsfiddle_username_field' => 'iajsfiddle'
-	);
-	$shortcode = 'iajsfiddle';
-	$caps = array(
-		'ia_jsfiddle_options'
-	);
+	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/plugin-options.php');
 
 
 	//CLASSES
@@ -52,7 +43,8 @@
 					'fiddle' => '',
 					'height' => '',
 					'width' => '',
-					'show' => ''
+					'show' => '',
+					'skin' => ''
 				), $atts
 			)
 		);
@@ -60,7 +52,7 @@
 		$fiddle_array = array();
 		$fiddle_array['code'] = $fiddle;
 		$fiddle_array['user'] = $user;
-		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show);
+		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show,$skin);
 		$jsfiddle = $ia_jsfiddle->get_fiddle();
 		echo $jsfiddle;
 	}

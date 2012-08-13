@@ -19,3 +19,4 @@ thanks
 
 [@dzejkej](https://github.com/dzejkej/) for the [jsfiddle-utils](https://github.com/dzejkej/jsfiddle-utils) JavaScript that makes it dead-simple to retrieve info from the JSFiddle API
 [@padolsey](https://github.com/padolsey) for the [cross-domain-ajax](https://github.com/padolsey/jQuery-Plugins/tree/master/cross-domain-ajax/) JavaScript that [jsfiddle-utils](https://github.com/dzejkej/jsfiddle-utils) uses to retrieve the Fiddles from the API
+[@Naatan](https://github.com/Naatan/) for the basic [jsFiddle-skin-proxy](https://github.com/Naatan/jsFiddle-skin-proxy) code that allows custom skins to be attached to embedded JSFiddles

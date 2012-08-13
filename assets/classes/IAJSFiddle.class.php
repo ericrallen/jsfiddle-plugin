@@ -3,9 +3,9 @@
 	//class for jsfiddle plug-in
 	class IA_JSFiddle {
 
-		var $fiddle, $height, $width, $show, $output;
+		var $fiddle, $height, $width, $show, $skin, $output;
 
-		public function __construct(array $f = null,$h = null,$w = null,$s = null) {
+		public function __construct(array $f = null,$h = null,$w = null,$s = null,$sk = null) {
 			if($f) {
 				$this->fiddle = $f;
 				if($h != null) {
@@ -23,6 +23,11 @@
 				} else {
 					$this->show = 'js,resources,html,css,result';
 				}
+				if($sk != null) {
+					$this->skin = $sk;
+				} else {
+					$this->skin = 'default';
+				}
 			} else {
 				return false;
 			}
@@ -32,7 +37,11 @@
 			$this->output = '';
 			$show_string = '';
 			$show_string = substr($show_string,0,-1);
-			$this->output .= '<iframe style="width: ' . $this->width . '; height: ' . $this->height . ';" src="http://jsfiddle.net/' . $this->fiddle['user'] . '/' . $this->fiddle['code'] . '/embedded/' . $this->show . '" allowfullscreen="allowfullscreen" frameborder="0"></iframe>';
+			if($this->skin && $this->skin !== 'default') {
+				$this->output .= '<iframe style="width: ' . $this->width . '; height: ' . $this->height . ';" src="' . plugins_url() . '/jsfiddle-plugin/assets/jsFiddle-skin-proxy/?id=' . $this->fiddle['code'] . '&tabs=' . $this->show .'&skin=' . $this->skin . '" allowfullscreen="allowfullscreen" frameborder="0"></iframe>';
+			} else {
+				$this->output .= '<iframe style="width: ' . $this->width . '; height: ' . $this->height . ';" src="http://jsfiddle.net/' . $this->fiddle['user'] . '/' . $this->fiddle['code'] . '/embedded/' . $this->show . '" allowfullscreen="allowfullscreen" frameborder="0"></iframe>';
+			}
 			return $this->output;
 		}
 
