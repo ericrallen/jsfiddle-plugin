@@ -38,17 +38,32 @@ class jsfiddle_skin_proxy {
 			$output
 		);
 		
+		//if there was a skin passed
 		if($skin !== 'default') {
-			$skin_link = $skindir . $skin . '/style.css';
-			$output = str_replace(
-				'</head>',
-				'<link rel="stylesheet" type="text/css" href="' . $skin_link . '" />' . "\n" .
-				'<script type="text/javascript" src="' . $url_proxy . '/js/scripts.js"></script>' . "\n" .
-				'</head>',
-				$output
-			);
+			//set up the link structure
+			$skin_link = $skindir . $skin;
+			//check for style definition
+			$header_response = get_headers($skin_link . '/style.css', 1);
+			if(strpos($header_response[0],"404") !== false) {
+				//there is no style definition for the requested theme
+			} else {
+				//check for script definition
+				$header_response = get_headers($skin_link . '/js/scripts.js', 1);
+				if(strpos($header_response[0],"404") !== false) {
+					$script_link = '';
+				} else {
+					$script_link = '<script type="text/javascript" src="' . $skin_link . '/js/scripts.js"></script>' . "\n";
+				}
+				//add custom css and js to bottom of the <head>
+				$output = str_replace(
+					'</head>',
+					'<link rel="stylesheet" type="text/css" href="' . $skin_link . '/style.css" />' . "\n" .
+					$script_link . 
+					'</head>',
+					$output
+				);
+			}
 		}
-
 		return $output;
 	}
 	
