@@ -39,7 +39,7 @@
 		}
 
 		//add user capabilities
-		private function add_caps() {
+		/*private function add_caps() {
 	    	$min_cap = 'manage_options';
 	    	$grant = true;
 	    	global $wp_roles;
@@ -66,7 +66,7 @@
 	    			}
 	    		}
 	    	}
-		}
+		}*/
 
 		//install and initialize the plug in
 		public function activate() {
@@ -80,7 +80,7 @@
 					}
 				}
 			}
-			self::$ia_instance->add_caps();
+			//self::$ia_instance->add_caps();
 		}
 
 		//disable some stuff that isn't useful if it's deactivated
@@ -95,19 +95,22 @@
 		public function uninstall() {
 			global $wpdb;
 			//remove user capability
-			self::$ia_instance->remove_caps();
+			//self::$ia_instance->remove_caps();
 			//remove options
 			foreach(self::$ia_instance->options as $opt => $val) {
 				remove_option($opt);
 			}
 			//get users with jsfiddle meta and remove the meta
 			$u_table = $wpdb->prefix . 'usermeta';
-			$user_field = get_option('ia_jsfiddle_username_field');
-			$query = "SELECT user_id FROM $u_table WHERE meta_key = '$user_field';";
-			$get_users = $wpdb->get_results($query);
-			if($get_users) {
-				foreach($get_users as $user_id) {
-					delete_user_meta($user_id,$user_field);
+			$remove['user_field'] = get_option('ia_jsfiddle_username_field');
+			$remove['skin_dir'] = get_option('ia_jsfiddle_skins_dir');
+			foreach($remove as $name => $val) {
+				$query = "SELECT user_id FROM $u_table WHERE meta_key = '$val';";
+				$get_users = $wpdb->get_results($query);
+				if($get_users) {
+					foreach($get_users as $user_id) {
+						delete_user_meta($user_id,$val);
+					}
 				}
 			}
 		}

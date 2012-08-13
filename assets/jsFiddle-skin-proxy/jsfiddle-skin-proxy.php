@@ -2,19 +2,19 @@
 
 class jsfiddle_skin_proxy {
 	
-	public static function process($id, $result = false, $tabs = 'js,html,css,result', $skin = 'default') {
+	public static function process($id, $skindir, $result = false, $tabs = 'js,html,css,result', $skin = 'default') {
 		
 		$url = $result ? 'http://fiddle.jshell.net/'.$id.'/show/light/' : 'http://fiddle.jshell.net/'.$id.'/embedded/'.urlencode($tabs).'/';
 		
 		self::validate($id);
 		$output = self::get_contents($url);
-		$output = self::parse($output,$id,$skin);
+		$output = self::parse($output,$id,$skindir,$skin);
 		
 		return $output;
 		
 	}
 	
-	public static function parse($output,$id,$skin) {
+	public static function parse($output,$id,$skindir,$skin) {
 		$output = preg_replace(
 			array(
 				'/(src\=\")\//i',
@@ -39,9 +39,10 @@ class jsfiddle_skin_proxy {
 		);
 		
 		if($skin !== 'default') {
+			$skin_link = $skindir . $skin . '/style.css';
 			$output = str_replace(
 				'</head>',
-				'<link rel="stylesheet" type="text/css" href="' . $url_proxy . '/skins/' . $skin . '/style.css" />' . "\n" .
+				'<link rel="stylesheet" type="text/css" href="' . $skin_link . '" />' . "\n" .
 				'<script type="text/javascript" src="' . $url_proxy . '/js/scripts.js"></script>' . "\n" .
 				'</head>',
 				$output

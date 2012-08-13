@@ -104,7 +104,11 @@
 							</tr>
 							<tr>
 								<td>
-									<input type="text" value="default" name="ia-fiddle-skin" id="ia-fiddle-skin" />
+									<select name="ia-fiddle-skin" id="ia-fiddle-skin">
+										<option value="default">Default</option>
+										<option value="dark">Dark</option>
+										<option value="alchemy">Alchemy</option>
+									</select>
 								</td>
 							</tr>
 							<tr>

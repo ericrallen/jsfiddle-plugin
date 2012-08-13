@@ -64,9 +64,9 @@
 
 	//add plug-in options
 	function ia_jsfiddle_set_options() {
-		global $options,$shortcode,$caps;
+		global $options,$shortcode;
 		//initialize setup class
-		$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance($options,$shortcode,$caps);
+		$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance($options,$shortcode);
 		$ia_jsfiddle_plugin->activate();
 	}
 	//run when plug-in is activated
