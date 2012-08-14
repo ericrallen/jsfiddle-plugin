@@ -28,10 +28,8 @@
 	//CLASSES
 
 	//include plugin classes
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddlePlugin.class.php'); //setup
 	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddle.class.php'); //shortcode display
-	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddleAPI.class.php'); //api interaction
-	
+
 
 	//SHORTCODE	
 	
@@ -40,6 +38,7 @@
 		extract(
 			shortcode_atts(
 				array(
+					'user' => '',
 					'fiddle' => '',
 					'height' => '',
 					'width' => '',
@@ -48,26 +47,37 @@
 				), $atts
 			)
 		);
-		$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
 		$fiddle_array = array();
 		$fiddle_array['code'] = $fiddle;
+		if(!$user) {
+			$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
+		}
 		$fiddle_array['user'] = $user;
 		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show,$skin);
 		$jsfiddle = $ia_jsfiddle->get_fiddle();
 		echo $jsfiddle;
 	}
 	//set up shortcode for display
-	add_shortcode('iajsfiddle','ia_jsfiddle_display_by_shortcode');
-
+	if(!ia_jsfiddle_shortcode_exists($shortcode)) {
+		add_shortcode($shortcode,'ia_jsfiddle_display_by_shortcode');
+	}
 	
+
 	//ACTIVATION
 
 	//add plug-in options
 	function ia_jsfiddle_set_options() {
 		global $options,$shortcode;
-		//initialize setup class
-		$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance($options,$shortcode);
-		$ia_jsfiddle_plugin->activate();
+		foreach($options as $opt => $val) {
+			if(!get_option($opt)) {
+				add_option($opt,$val);
+			} else {
+				if(get_option($opt) !== $val) {
+					update_option($opt,$val);
+				}
+			}
+		}
+		ia_jsfiddle_add_caps();
 	}
 	//run when plug-in is activated
 	register_activation_hook(__FILE__,'ia_jsfiddle_set_options');
@@ -77,10 +87,39 @@
 	
 	//remove plug-in options
 	function ia_jsfiddle_clear_options() {
-		global $options,$shortcode,$caps;
-		//initialize setup class
-		$ia_jsfiddle_plugin = IA_JSFiddle_Plugin::get_instance($options,$shortcode,$caps);
-		$ia_jsfiddle_plugin->deactivate();
+		global $options, $shortcode, $caps, $wpdb, $wp_roles;
+		if(ia_jsfiddle_shortcode_exists($shortcode)) {
+			remove_shortcode($shortcode);
+		}
+
+		foreach($options as $opt => $val) {
+			if(get_option($opt)) {
+				delete_option($opt);
+			}
+		}
+		
+		//get users with jsfiddle meta and remove the meta
+		$u_table = $wpdb->prefix . 'usermeta';
+		$remove['meta_key'] = get_option('ia_jsfiddle_username_field');
+		foreach($remove as $name => $val) {
+			$query = "SELECT user_id FROM $u_table WHERE meta_key = '$val';";
+			$get_users = $wpdb->get_results($query);
+			if($get_users) {
+				foreach($get_users as $user_id) {
+					delete_user_meta($user_id,$val);
+				}
+			}
+		}
+		
+		//iterate through all roles and remove the capabilities
+		foreach($wp_roles->roles as $role => $info) {
+			$role_obj = get_role($role);
+			foreach($caps as $cap) {
+				if ($role_obj->has_cap($cap)) {
+					$role_obj->remove_cap($cap);
+				}
+			}
+		}
 	}
 	register_deactivation_hook(__FILE__,'ia_jsfiddle_clear_options');
 
@@ -91,5 +130,35 @@
 	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/user.php'); //user based actions
 	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/post.php'); //menu based actions
 	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/menu.php'); //menu based actions
+
+	//check shortcode
+	function ia_jsfiddle_shortcode_exists() {
+		global $shortcode_tags, $shortcode;
+		if(!$shortcode) {
+			return false;
+		} else {
+			if(array_key_exists($shortcode,$shortcode_tags)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	//add role caps
+	function ia_jsfiddle_add_caps() {
+		global $wp_roles, $caps;
+		$min_cap = 'manage_options';
+		$grant = true;
+		//iterate through all roles and add the capabilities
+		foreach($wp_roles->role_names as $role => $info) {
+			$role_obj = get_role($role);
+			foreach($caps as $cap) {
+				if(!$role_obj->has_cap($cap) && $role_obj->has_cap($min_cap)) {
+					$role_obj->add_cap($cap,$grant);
+				}
+			}
+		}
+	}
 	
 ?>
