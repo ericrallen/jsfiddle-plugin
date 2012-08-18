@@ -63,6 +63,23 @@
 	}
 	
 
+	//CRON
+
+	//set up cron for theme manager script
+	function ia_jsfiddle_add_cron() {
+		require_once(get_option('ia_js_fiddle_skins_dir') . '/plugin-options.php');
+		$skin_manager = new IA_JSFiddle_Theme_Manager();
+		$skin_manager->initialize();
+	}
+	
+	if (!wp_next_scheduled('ia_jsfiddle_check_themes')) {
+		$schedule = get_option('ia_js_fiddle_theme_manager_cron');
+		wp_schedule_event(time(),$schedule,'ia_jsfiddle_cron' );
+	}
+
+	add_action('ia_jsfiddle_cron','ia_jsfiddle_run_cron');
+
+
 	//ACTIVATION
 
 	//add plug-in options
@@ -91,16 +108,11 @@
 		if(ia_jsfiddle_shortcode_exists($shortcode)) {
 			remove_shortcode($shortcode);
 		}
-
-		foreach($options as $opt => $val) {
-			if(get_option($opt)) {
-				delete_option($opt);
-			}
-		}
 		
 		//get users with jsfiddle meta and remove the meta
 		$u_table = $wpdb->prefix . 'usermeta';
-		$remove['meta_key'] = get_option('ia_jsfiddle_username_field');
+		
+		$remove['meta_key'] = 'iajsfiddle';
 		foreach($remove as $name => $val) {
 			$query = "SELECT user_id FROM $u_table WHERE meta_key = '$val';";
 			$get_users = $wpdb->get_results($query);

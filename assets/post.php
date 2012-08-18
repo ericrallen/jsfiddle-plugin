@@ -100,8 +100,17 @@
 									<td>
 										<select name="ia-fiddle-skin" id="ia-fiddle-skin">
 											<option value="default">Default</option>
-											<option value="dark">Dark</option>
-											<option value="alchemy">Alchemy</option>
+											
+											<?php
+												//get skins from JSON file
+												$skin_dir = get_option('ia_jsfiddle_skins_dir');
+												$skins = json_decode(file_get_contents($skin_dir . '/jsfiddle-skins.json'));
+												foreach($skins as $id => $skin) { ?>
+												
+													<option value="<?php echo $id; ?>"><?php echo $skin->name; ?></option>
+												
+												<?php } ?>
+
 										</select>
 									</td>
 								</tr>
