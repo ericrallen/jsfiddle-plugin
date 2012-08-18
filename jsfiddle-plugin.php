@@ -4,7 +4,7 @@
 		Plugin Name: JSFiddle Shortcode InternetAlche.Me
 		Plugin URI: http://internetalche.me/
 		Description: Add JSFiddles via shortcode
-		Version: v0.2b
+		Version: v1.0b
 		Author: Eric Allen
 		Author URI: http://internetalche.me/
 		License: MIT
