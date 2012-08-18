@@ -1,7 +1,7 @@
 jsfiddle-plugin
 ===============
 
-Adds functionality for an [iajsfiddle] shortcode to Wordpress.
+Adds functionality for an [iajsfiddle] shortcode to Wordpress that allows quick and easy embedding of JSFiddles.
 
 This plug-in adds a custom user contact method to the User Profile page for a JSFiddle username, but will also allow admins to define the custom field to use for this contact method, in case a developer has already altered contact methods and added a field for JSFiddle.
 
@@ -11,9 +11,11 @@ The plug-in creates a custom metabox on the Edit Post and Edit Page admin pages 
 
 The plug-in supports custom JSFiddle skins, and allows the admin to define a folder where custom skins will be uploaded.
 
+The plug-in has a theme manager file and class that can be run via the Wordpress cron function (or set up as a regular cronjob by developers) and retrieves all current skins in the defined skins directory and uses them to populate the Skin dropdown in the shortcode generating metabox.
+
 This plug-in is in its beta phase; it functions, but has only been lightly tested. It has not been internationalized or set up for multi-site network integration.
 
-It is a work in progress.
+It is a work in progress, though it is getting close to where I want it.
 
 
 thanks

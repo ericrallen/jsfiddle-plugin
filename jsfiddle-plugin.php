@@ -13,6 +13,8 @@
 	/*
 	--------------------------------------------------- Change Log -----------------------------------------------------
 		
+	 + 2012-08-18  v1.0b  Plug-in updaated. Set up theme manager and cron implementation. made several updates to functionality.
+
 	 + 2012-08-09  v0.2b  Plug-in updated. Began class creation and started designing plug-in methods, etc. Cleaned up plug-in code to a series of separate files that will be more manageable in the long run.
 
 	 + 2012-08-07  v0.1b  Plug-in created.
