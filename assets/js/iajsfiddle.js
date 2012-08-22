@@ -19,7 +19,7 @@
 					jQuery("#ia-fiddle-container").html(output);
 				});
 			}
-			jQuery('body').on('click','.ia-fiddle-details',function() {
+			jQuery('#wpbody').on('click','.ia-fiddle-details',function() {
 				if(jQuery(this).parent().parent().find('.ia-fiddle-desc').is(':visible')) {
 					jQuery(this).parent().parent().find('.ia-fiddle-desc').slideUp();
 					jQuery(this).html('Details');
@@ -31,13 +31,13 @@
 				}
 				
 			});
-			jQuery('body').on('click','.ia-fiddle-insert',function() {
+			jQuery('#wpbody').on('click','.ia-fiddle-insert',function() {
 				jQuery('#ia-fiddle-id').val(jQuery(this).attr('data-id'));
 				jQuery('#ia-fiddle-container').fadeOut(function() {
 					jQuery('#ia-fiddle-options').fadeIn();
 				});
 			});
-			jQuery('body').on('click','#ia-fiddle-embed',function() {
+			jQuery('#wpbody').on('click','#ia-fiddle-embed',function() {
 				var user, id, height, width, show;
 				if(jQuery('#ia_fiddle_other_user').length) {
 					user = ' user=\"' + jQuery('#ia_fiddle_other_user').val() + '\"';
@@ -60,27 +60,33 @@
 					jQuery('#ia-fiddle-shortcode').fadeIn();
 				});
 			});
-			jQuery('body').on('click','#ia-fiddle-back-to-ops',function() {
+			jQuery('#wpbody').on('click','#ia-fiddle-back-to-ops',function() {
 				jQuery('#ia-fiddle-shortcode').fadeOut(function() {
 					jQuery('#ia-fiddle-options').fadeIn();
 					jQuery('#ia-fiddle-shortcode').html('');
 				});
 			});
-			jQuery('body').on('click','#ia-fiddle-back-to-list',function() {
+			jQuery('#wpbody').on('click','#ia-fiddle-back-to-list',function() {
 				jQuery('#ia-fiddle-options').fadeOut(function() {
 					jQuery('#ia-fiddle-container').fadeIn();
 					jQuery('#ia-fiddle-id').val('');
 				});
 			});
-			jQuery('body').on('click','#ia-fiddle-back-to-fiddles',function() {
+			jQuery('#wpbody').on('click','#ia-fiddle-back-to-fiddles',function() {
 				jQuery('#ia-fiddle-shortcode').fadeOut(function() {
+					jQuery('.back_to_user').hide();
+					jQuery('.other_user').show();
+					jQuery('#ia_fiddle_other_user').remove();
+					jQuery('#ia_fiddle_other_fiddle').remove();
 					jQuery('#ia-fiddle-container').fadeIn();
 					jQuery('#ia-fiddle-id').val('');
 					jQuery('#ia-fiddle-shortcode').html('');
 				});
 			});
-			jQuery('body').on('click','#ia-fiddle-other-user',function() {
+			jQuery('#wpbody').on('click','#ia-fiddle-other-user',function() {
 				jQuery('#ia-fiddle-container').fadeOut(function() {
+					jQuery('.other_user').hide();
+					jQuery('.back_to_user').show();
 					jQuery('#ia-fiddle-other-user-container').fadeIn();
 					if(jQuery('#ia_fiddle_other_user').length) {
 						jQuery('#ia_fiddle_other_user').remove();
@@ -90,11 +96,23 @@
 					}
 				});
 			});
-			jQuery('body').on('click','#ia-fiddle-add-user',function() {
+			jQuery('#wpbody').on('click','#ia-fiddle-add-user',function() {
 				jQuery('#ia-fiddle-other-user-container').fadeOut(function() {
-					jQuery('#ia-fiddle-options').find('form').prepend('<input type="hidden" id="ia_fiddle_other_user" name="ia_fiddle_other_user" value="' + jQuery('#fiddle_user').val() + '" />');
-					jQuery('#ia-fiddle-options').find('form').prepend('<input type="hidden" id="ia_fiddle_other_fiddle" name="ia_fiddle_other_fiddle" value="' + jQuery('#fiddle_id').val() + '" />');
+					var url = jQuery('#fiddle_link').val();
+					url = url.substring(7);
+					url = url.split('/');
+					jQuery('#ia-fiddle-options').find('form').prepend('<input type="hidden" id="ia_fiddle_other_user" name="ia_fiddle_other_user" value="' + url[1] + '" />');
+					jQuery('#ia-fiddle-options').find('form').prepend('<input type="hidden" id="ia_fiddle_other_fiddle" name="ia_fiddle_other_fiddle" value="' + url[2] + '" />');
 					jQuery('#ia-fiddle-options').fadeIn();
+				});
+			});
+			jQuery('#wpbody').on('click','.back_to_user',function() {
+				jQuery('#ia-fiddle-other-user-container').fadeOut(function() {
+					jQuery('.back_to_user').hide();
+					jQuery('.other_user').show();
+					jQuery('#ia_fiddle_other_user').remove();
+					jQuery('#ia_fiddle_other_fiddle').remove();
+					jQuery('#ia-fiddle-container').fadeIn();
 				});
 			});
 		}

@@ -1,7 +1,7 @@
 <?php
 
 	//theme manager class
-	class IA_JSFiddle_Theme_Manager {
+	class IA_JSFiddle_Skin_Manager {
 		
 		var $dir, $skins;
 
@@ -14,7 +14,7 @@
 				if($sk = opendir($dir)) {
 					while(($file = readdir($sk)) !== false) {
 						$f_name = $file;
-						$f_type = filetype($skin_dir . '/' . $dir . '/' . $file);
+						$f_type = filetype($this->skins_dir . '/' . $dir . '/' . $file);
 						$file_array[$f_type][] = $f_name;
 					}
 					foreach($file_array['dir'] as $key => $val) {
@@ -43,7 +43,7 @@
 
 		function write_file() {
 			$json = json_encode($this->skins);
-			$filename = $this->skin_dir . '/jsfiddle-skins.json';
+			$filename = $this->skins_dir . '/jsfiddle-skins.json';
 			$file = file_put_contents($filename,utf8_encode($json));
 			chmod($filename,0755);
 		}

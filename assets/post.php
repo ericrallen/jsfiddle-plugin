@@ -16,7 +16,8 @@
 			<div class="inside">
 				<div id="ia-fiddle-head" data-user="<?php echo $fiddle_user; ?>">
 					<h2>Fiddles for <?php echo $fiddle_user; ?></h2>
-					<p><a id="ia-fiddle-other-user" href="javascript:void(0);">add Fiddle from another user</a></p>
+					<p class="other_user"><a id="ia-fiddle-other-user" href="javascript:void(0);">add Fiddle from another user</a></p>
+					<p class="back_to_user" style="display:none;"><a id="ia-fiddle-back-to-user" href="javascript:void(0);">back to your Fiddles</a></p>
 				</div>
 				<div id="ia-fiddle">
 					<div id="ia-fiddle-container">Loading fiddles...</div>
@@ -25,27 +26,12 @@
 							<table>
 								<tr>
 									<td>
-										<label for="fiddle_user">User Name</label>
+										<label for="fidde_link">Fiddle URL</label>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<input type="text" value="" id="fiddle_user" name="fiddle_user" />
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="fiddle_id">Fiddle ID</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<input type="text" value="" id="fiddle_id" name="fiddle_id" />
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>The Fiddle ID is the string of characters at the end of the JSFiddle url. Example: For http://jsfiddle.net/allenericr/RVY4N/ the Fiddle ID is <strong>RVY4N</strong></p>
+										<input type="text" value="" id="fiddle_link" name="fiddle_link" />
 									</td>
 								</tr>
 								<tr>
@@ -107,7 +93,7 @@
 												$skins = json_decode(file_get_contents($skin_dir . '/jsfiddle-skins.json'));
 												foreach($skins as $id => $skin) { ?>
 												
-													<option value="<?php echo $id; ?>"><?php echo $skin->name; ?></option>
+													<option value="<?php echo $id; ?>"><?php echo ucfirst($id); ?></option>
 												
 												<?php } ?>
 
