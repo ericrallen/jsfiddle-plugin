@@ -39,7 +39,7 @@ function ia_jsfiddle_display_option_form() {
 						$selected = '';
 					} ?>
 
-					<option value="<?php echo $cron; ?>"><?php echo ucfist($cron); ?></option>
+					<option value="<?php echo $cron; ?>"><?php echo ucfirst($cron); ?></option>
 
 				<?php } ?>
 
