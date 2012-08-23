@@ -1,6 +1,10 @@
 jsfiddle-plugin
 ===============
 
+Now Available through the Wordpress Plug-in Repository:
+
+[http://wordpress.org/extend/plugins/jsfiddle-shortcode-w-custom-skins/](http://wordpress.org/extend/plugins/jsfiddle-shortcode-w-custom-skins/)
+
 Adds functionality for an [iajsfiddle] shortcode to Wordpress that allows quick and easy embedding of JSFiddles.
 
 This plug-in adds a custom user contact method to the User Profile page for a JSFiddle username, but will also allow admins to define the custom field to use for this contact method, in case a developer has already altered contact methods and added a field for JSFiddle.
