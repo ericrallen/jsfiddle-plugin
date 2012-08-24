@@ -3,7 +3,7 @@ Contributors: ericrallen
 Tags: jsfiddle, shortcode
 Requires at least: 3.4.0
 Tested up to: 3.4
-Stable tag: 1.1
+Stable tag: 1.2
 License: MIT
 License URI: http://opensource.org/licenses/mit-license.php
 
@@ -47,14 +47,17 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 
 == Changelog ==
 
-= 1.1b =
+= 1.2 =
+* Added some upgrade notices for anyone who has already downloaded the plug-in.
+
+= 1.1 =
 * Updated code to better support adding Fiddles to pages and posts.
 * Added comment to readme about allowing jsfiddle shortcode in comments.
 * Added screenshots to repo.
 * Updated deactivation to be more appropriate and not remove user meta.
 * Moved option removal to unistall.
 
-= 1.0b =
+= 1.0 =
 * Initial submission to the WP Plug-in Repo
 
 == Upgrade Notice ==
