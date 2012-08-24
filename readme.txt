@@ -19,6 +19,8 @@ It also supports custom JSFiddle skins that users can add to a directory. They c
 
 == Installation ==
 
+If you are upgrading from 1.0 or v1.0b (before I understood the WP Repo version tagging), you will have to reset your options because the deactivation process was incorrectly set up. All future versions will maintain your options. I apologize for the inconvenience.
+
 1. Upload `jsfiddle-shortcode-w-custom-skins` to your plug-in directory or install it from the Wordpress Plug-in Repository
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Add your JSFiddle username to the contact method field for JSFiddle, or open JSFiddle Shortcode Settings from the Settings menu and define your previously added JSFiddle user contact method field
@@ -54,6 +56,11 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 
 = 1.0b =
 * Initial submission to the WP Plug-in Repo
+
+== Upgrade Notice ==
+
+= 1.1 =
+Fixed a few issues with the plug-in in the Add Post and Edit and Add Page sections. Also, fixed deactivation so that it doesn't clear all your options. You may have to reset them after you upgrade, but this won't happen in the future.
 
 == Support ==
 
