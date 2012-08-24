@@ -45,6 +45,13 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 
 == Changelog ==
 
+= 1.1b =
+* Updated code to better support adding Fiddles to pages and posts.
+* Added comment to readme about allowing jsfiddle shortcode in comments.
+* Added screenshots to repo.
+* Updated deactivation to be more appropriate and not remove user meta.
+* Moved option removal to unistall.
+
 = 1.0b =
 * Initial submission to the WP Plug-in Repo
 
