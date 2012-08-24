@@ -48,8 +48,6 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 = 1.0b =
 * Initial submission to the WP Plug-in Repo
 
-== Upgrade Notice ==
-
 == Support ==
 
 Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-plugin/issues) for reporting any issues or asking questions.
