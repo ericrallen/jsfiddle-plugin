@@ -24,8 +24,17 @@ It also supports custom JSFiddle skins that users can add to a directory. They c
 3. Add your JSFiddle username to the contact method field for JSFiddle, or open JSFiddle Shortcode Settings from the Settings menu and define your previously added JSFiddle user contact method field
 4. Begin adding JSFiddles to your posts and pages using the metabox
 5. Add custom skins to the `/jsfiddle-shortcode-w-custom-skins/jsFiddle-skin-proxy/skins/` directory or open JSFiddle Shortcode Settings and define your custom skin directory there
+6. Add the following code block to your functions.php to allow JSFiddles in your comments:
+	`function init_comment_shortcodes() {
+		remove_all_shortcodes();
+		add_shortcode('iajsfiddle', 'ia_jsfiddle_display_by_shortcode');
+		add_filter('comment_text', 'do_shortcode');
+	}
+	add_filter('comments_template', 'init_comment_shortcodes');`
 
 == Frequently Asked Questions ==
+
+Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-plugin/issues) for more information
 
 == Screenshots ==
 

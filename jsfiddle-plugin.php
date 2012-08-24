@@ -59,12 +59,10 @@
 		$fiddle_array['user'] = $user;
 		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show,$skin);
 		$jsfiddle = $ia_jsfiddle->get_fiddle();
-		echo $jsfiddle;
+		return $jsfiddle;
 	}
 	//set up shortcode for display
-	if(!ia_jsfiddle_shortcode_exists($shortcode)) {
-		add_shortcode($shortcode,'ia_jsfiddle_display_by_shortcode');
-	}
+	add_shortcode($shortcode,'ia_jsfiddle_display_by_shortcode');
 	
 
 	//CRON
