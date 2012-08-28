@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>JSFiddle Shortcode for Wordpress by ericrallen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>JSFiddle Shortcode for Wordpress</h1>
+        <p>Adds [iajsfiddle] shortcode to Wordpress w/ custom skin functionality</p>
+
+        <p class="view"><a href="https://github.com/ericrallen/jsfiddle-plugin">View the Project on GitHub <small>ericrallen/jsfiddle-plugin</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ericrallen/jsfiddle-plugin/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ericrallen/jsfiddle-plugin/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ericrallen/jsfiddle-plugin">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>What does it do?</h3>
+
+<p>Adds a custom user contact method for JSFiddle, or if a developer has already added a custom contact method for JSFiddle, they can define that field for use as the JSFiddle username instead.</p>
+
+<p>Adds a custom meta box to the post and page editing pages with a user's fiddles (pulled in via the JSFiddle API), and allows the user to define some custom options for their embedded Fiddle (tabs,width,height,etc.).</p>
+
+<p>It also supports custom JSFiddle skins that users can add to a directory. They can specify the directory to be used or use the skins directory provided by the plug-in.</p>
+
+<p>The plug-in has a theme manager file and class that can be run via the Wordpress cron function (or set up as a regular cronjob by developers) and retrieves all current skins in the defined skins directory and uses them to populate the Skin dropdown in the shortcode generating metabox.</p>
+
+<h3>Why?</h3>
+
+<p>I wanted to be able to easily embed JSFiddles in a site I'm working on, and wanted to be able to have the embedded fiddle match my site's design scheme. (not that there is anything wrong with the default JSFiddle skin)</p>
+
+<p>I figured other people might like to do this, too.</p>
+
+<h3>Installation</h3>
+
+<ol>
+<li>Upload <code>jsfiddle-shortcode-w-custom-skins</code> to your plug-in directory or <a href="download">http://wordpress.org/extend/plugins/jsfiddle-shortcode-w-custom-skins/</a> and install it from the Wordpress Plug-in Repository</li>
+<li>Activate the plugin through the 'Plugins' menu in WordPress</li>
+<li>Add your JSFiddle username to the contact method field for JSFiddle, or open JSFiddle Shortcode Settings from the Settings menu and define your previously added JSFiddle user contact method field</li>
+<li>Begin adding JSFiddles to your posts and pages using the metabox</li>
+<li>Add custom skins to the <code>/jsfiddle-shortcode-w-custom-skins/jsFiddle-skin-proxy/skins/</code> directory or open JSFiddle Shortcode Settings and define your custom skin directory there</li>
+<li>Add the following code block to your functions.php to allow JSFiddles in your comments:</li>
+</ol><pre><code>function init_comment_shortcodes() {
+        //prevent the use of other shortcodes
+        remove_all_shortcodes();
+        add_shortcode('iajsfiddle', 'ia_jsfiddle_display_by_shortcode');
+        add_filter('comment_text', 'do_shortcode');
+}
+add_filter('comments_template', 'init_comment_shortcodes');
+</code></pre>
+
+<h3>Coming Soon</h3>
+
+<ul>
+<li>Internationalization</li>
+<li>Multi-Site compatibility</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ericrallen">ericrallen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
