@@ -53,14 +53,14 @@
 <li>Begin adding JSFiddles to your posts and pages using the metabox</li>
 <li>Add custom skins to the <code>/jsfiddle-shortcode-w-custom-skins/jsFiddle-skin-proxy/skins/</code> directory or open JSFiddle Shortcode Settings and define your custom skin directory there</li>
 <li>Add the following code block to your functions.php to allow JSFiddles in your comments:</li>
-</ol><pre><code>function init_comment_shortcodes() {
-        //prevent the use of other shortcodes
-        remove_all_shortcodes();
-        add_shortcode('iajsfiddle', 'ia_jsfiddle_display_by_shortcode');
-        add_filter('comment_text', 'do_shortcode');
-}
-add_filter('comments_template', 'init_comment_shortcodes');
-</code></pre>
+</ol><div class="highlight"><pre><span class="k">function</span> <span class="nf">init_comment_shortcodes</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//prevent the use of other shortcodes</span>
+        <span class="nx">remove_all_shortcodes</span><span class="p">();</span>
+        <span class="nx">add_shortcode</span><span class="p">(</span><span class="s1">'iajsfiddle'</span><span class="p">,</span> <span class="s1">'ia_jsfiddle_display_by_shortcode'</span><span class="p">);</span>
+        <span class="nx">add_filter</span><span class="p">(</span><span class="s1">'comment_text'</span><span class="p">,</span> <span class="s1">'do_shortcode'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">add_filter</span><span class="p">(</span><span class="s1">'comments_template'</span><span class="p">,</span> <span class="s1">'init_comment_shortcodes'</span><span class="p">);</span>
+</pre></div>
 
 <h3>Coming Soon</h3>
 
@@ -75,6 +75,16 @@ add_filter('comments_template', 'init_comment_shortcodes');
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34389806-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
