@@ -3,7 +3,7 @@
 Plugin Name: JSFiddle Shortcode by InternetAlche.Me
 Plugin URI: https://github.com/ericrallen/jsfiddle-plugin/
 Description: Add JSFiddles via shortcode and select Fiddles from your JSFiddle user account directly from your post and page editor.
-Version: 1.3.1
+Version: 1.3.2
 Author: Eric Allen
 Author URI: http://internetalche.me/
 License: MIT
@@ -12,6 +12,8 @@ License: MIT
 	/*
 	--------------------------------------------------- Change Log -----------------------------------------------------
 		
+	 + 2012-09-06 v1.3.2 Updated a few directory errors that I missed in the previous update.
+
 	 + 2012-09-06 v1.3 Updated plug-in to fix an issue involving directory structure after I changed the plug-in's folders for the Wordpress repo.
 
 	 + 2012-08-21  v1.0b  Plug-in updated. Finished the cron implementation of the theme manager.
