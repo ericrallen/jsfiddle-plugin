@@ -2,12 +2,8 @@
 Contributors: ericrallen
 Tags: jsfiddle, shortcode
 Requires at least: 3.4.0
-Tested up to: 3.4
-<<<<<<< HEAD
-Stable tag: 1.3.2
-=======
+Tested up to: 3.4.1
 Stable tag: 1.3.3
->>>>>>> dev
 License: MIT
 License URI: http://opensource.org/licenses/mit-license.php
 
@@ -51,12 +47,9 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 
 == Changelog ==
 
-<<<<<<< HEAD
-=======
 = 1.3.3 =
 * Added support for simply adding a JSFiddle via it's url using [iajsfiddle url=""].
 
->>>>>>> dev
 = 1.3.2 =
 * I missed a directory error or two and had to update them, as well. Should be good to go now.
 
