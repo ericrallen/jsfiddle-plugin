@@ -46,16 +46,26 @@ License: MIT
 					'height' => '',
 					'width' => '',
 					'show' => '',
-					'skin' => ''
+					'skin' => '',
+					'url' => ''
 				), $atts
 			)
 		);
 		$fiddle_array = array();
-		$fiddle_array['code'] = $fiddle;
-		if(!$user) {
-			$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
+		if($url) {
+			if(substr($url, 0, 7) == 'http://') {
+				$url = substr($url, 7);
+			}
+			$url_array = explode('/', $url);
+			$fiddle_array['user'] = $url_array[1];
+			$fiddle_array['code'] = $url_array[2];
+		} else {
+			$fiddle_array['code'] = $fiddle;
+			if(!$user) {
+				$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
+			}
+			$fiddle_array['user'] = $user;
 		}
-		$fiddle_array['user'] = $user;
 		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show,$skin);
 		$jsfiddle = $ia_jsfiddle->get_fiddle();
 		return $jsfiddle;

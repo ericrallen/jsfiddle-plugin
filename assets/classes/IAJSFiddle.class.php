@@ -35,8 +35,6 @@
 
 		public function get_fiddle() {
 			$this->output = '';
-			$show_string = '';
-			$show_string = substr($show_string,0,-1);
 			if(!is_feed()) {
 				if($this->skin && $this->skin !== 'default') {
 					$this->output .= '<iframe class="ia-jsfiddle-embed ia-jsfiddle-embed-' . $this->skin . '" style="width: ' . $this->width . '; height: ' . $this->height . ';" src="' . plugins_url() . '/jsfiddle-shortcode-w-custom-skins/assets/jsFiddle-skin-proxy/?id=' . $this->fiddle['code'] . '&tabs=' . $this->show .'&skindir=' . get_option('ia_jsfiddle_skins_dir') . '&skin=' . $this->skin . '" allowfullscreen="allowfullscreen" frameborder="0"></iframe>';
