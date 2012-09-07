@@ -3,7 +3,7 @@
 Plugin Name: JSFiddle Shortcode by InternetAlche.Me
 Plugin URI: https://github.com/ericrallen/jsfiddle-plugin/
 Description: Add JSFiddles via shortcode and select Fiddles from your JSFiddle user account directly from your post and page editor.
-Version: 1.3
+Version: 1.3.3
 Author: Eric Allen
 Author URI: http://internetalche.me/
 License: MIT

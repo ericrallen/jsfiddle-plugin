@@ -3,7 +3,7 @@ Contributors: ericrallen
 Tags: jsfiddle, shortcode
 Requires at least: 3.4.0
 Tested up to: 3.4
-Stable tag: 1.3
+Stable tag: 1.3.3
 License: MIT
 License URI: http://opensource.org/licenses/mit-license.php
 
@@ -47,6 +47,15 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 
 == Changelog ==
 
+= 1.3.3 =
+* Added support for simply adding a JSFiddle via it's url using [iajsfiddle url=""].
+
+= 1.3.2 =
+* I missed a directory error or two and had to update them, as well. Should be good to go now.
+
+= 1.3.1 =
+* Updated plug-in to fix some directory issues after I changed the directory structure for the Wordpress Plug-in repo.
+
 = 1.2 =
 * Added some upgrade notices for anyone who has already downloaded the plug-in.
 
@@ -58,12 +67,7 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 * Moved option removal to unistall.
 
 = 1.0 =
-* Initial submission to the WP Plug-in Repo
-
-== Upgrade Notice ==
-
-= 1.1 =
-Fixed a few issues with the plug-in in the Add Post and Edit and Add Page sections. Also, fixed deactivation so that it doesn't clear all your options. You may have to reset them after you upgrade, but this won't happen in the future.
+* Initial submission to the WP Plug-in Repo won't happen in the future.
 
 == Support ==
 
