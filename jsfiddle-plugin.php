@@ -12,6 +12,12 @@ License: MIT
 	/*
 	--------------------------------------------------- Change Log -----------------------------------------------------
 		
+	 + 2012-09-06 v1.3.3 Added support for simple shortcode via [iajsfiddle url=""].
+
+	 + 2012-09-06 v1.3.2 Updated a few directory errors that I missed in the previous update.
+
+	 + 2012-09-06 v1.3 Updated plug-in to fix an issue involving directory structure after I changed the plug-in's folders for the Wordpress repo.
+
 	 + 2012-08-21  v1.0b  Plug-in updated. Finished the cron implementation of the theme manager.
 
 	 + 2012-08-18  v1.0b  Plug-in updaated. Set up theme manager and cron implementation. Made several updates to functionality.
