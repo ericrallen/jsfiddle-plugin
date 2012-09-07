@@ -3,7 +3,7 @@
 Plugin Name: JSFiddle Shortcode by InternetAlche.Me
 Plugin URI: https://github.com/ericrallen/jsfiddle-plugin/
 Description: Add JSFiddles via shortcode and select Fiddles from your JSFiddle user account directly from your post and page editor.
-Version: 1.3.2
+Version: 1.3.3
 Author: Eric Allen
 Author URI: http://internetalche.me/
 License: MIT
@@ -12,6 +12,8 @@ License: MIT
 	/*
 	--------------------------------------------------- Change Log -----------------------------------------------------
 		
+	 + 2012-09-06 v1.3.3 Added support for simple shortcode via [iajsfiddle url=""].
+
 	 + 2012-09-06 v1.3.2 Updated a few directory errors that I missed in the previous update.
 
 	 + 2012-09-06 v1.3 Updated plug-in to fix an issue involving directory structure after I changed the plug-in's folders for the Wordpress repo.
@@ -50,16 +52,26 @@ License: MIT
 					'height' => '',
 					'width' => '',
 					'show' => '',
-					'skin' => ''
+					'skin' => '',
+					'url' => ''
 				), $atts
 			)
 		);
 		$fiddle_array = array();
-		$fiddle_array['code'] = $fiddle;
-		if(!$user) {
-			$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
+		if($url) {
+			if(substr($url, 0, 7) == 'http://') {
+				$url = substr($url, 7);
+			}
+			$url_array = explode('/', $url);
+			$fiddle_array['user'] = $url_array[1];
+			$fiddle_array['code'] = $url_array[2];
+		} else {
+			$fiddle_array['code'] = $fiddle;
+			if(!$user) {
+				$user = get_the_author_meta(get_option('ia_jsfiddle_username_field'));
+			}
+			$fiddle_array['user'] = $user;
 		}
-		$fiddle_array['user'] = $user;
 		$ia_jsfiddle = new IA_JSFiddle($fiddle_array,$height,$width,$show,$skin);
 		$jsfiddle = $ia_jsfiddle->get_fiddle();
 		return $jsfiddle;
