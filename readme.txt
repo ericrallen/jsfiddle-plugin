@@ -3,7 +3,7 @@ Contributors: ericrallen
 Tags: jsfiddle, shortcode
 Requires at least: 3.4.0
 Tested up to: 3.4
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: MIT
 License URI: http://opensource.org/licenses/mit-license.php
 
@@ -46,6 +46,9 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 4. The JSFiddle contact method added by the plug-in
 
 == Changelog ==
+
+= 1.3.1 =
+* Updated plug-in to fix some directory issues after I changed the directory structure for the Wordpress Plug-in repo.
 
 = 1.2 =
 * Added some upgrade notices for anyone who has already downloaded the plug-in.
