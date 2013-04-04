@@ -1,4 +1,4 @@
-jsfiddle-plugin v1.1b
+jsfiddle-plugin
 =====================
 
 Now Available through the Wordpress Plug-in Repository:

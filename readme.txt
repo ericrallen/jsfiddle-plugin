@@ -2,8 +2,8 @@
 Contributors: ericrallen
 Tags: jsfiddle, shortcode
 Requires at least: 3.4.0
-Tested up to: 3.4.1
-Stable tag: 1.3.3
+Tested up to: 3.5.1
+Stable tag: 1.3.4
 License: MIT
 License URI: http://opensource.org/licenses/mit-license.php
 
@@ -46,6 +46,9 @@ Please use the Plug-in's [github page](https://github.com/ericrallen/jsfiddle-pl
 4. The JSFiddle contact method added by the plug-in
 
 == Changelog ==
+
+= 1.3.4 =
+* Updated skin manager functionality to work more effectively.
 
 = 1.3.3 =
 * Added support for simply adding a JSFiddle via it's url using [iajsfiddle url=""].

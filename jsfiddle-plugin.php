@@ -3,7 +3,7 @@
 Plugin Name: JSFiddle Shortcode by InternetAlche.Me
 Plugin URI: https://github.com/ericrallen/jsfiddle-plugin/
 Description: Add JSFiddles via shortcode and select Fiddles from your JSFiddle user account directly from your post and page editor.
-Version: 1.3.3
+Version: 1.3.4
 Author: Eric Allen
 Author URI: http://internetalche.me/
 License: MIT
@@ -12,6 +12,8 @@ License: MIT
 	/*
 	--------------------------------------------------- Change Log -----------------------------------------------------
 		
+	 + 2013-04-03 v1.3.4 Updated custom skin functionality to work better.
+
 	 + 2012-09-06 v1.3.3 Added support for simple shortcode via [iajsfiddle url=""].
 
 	 + 2012-09-06 v1.3.2 Updated a few directory errors that I missed in the previous update.
@@ -38,7 +40,6 @@ License: MIT
 
 	//include plugin classes
 	require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/assets/classes/IAJSFiddle.class.php'); //shortcode display
-
 
 	//SHORTCODE	
 	
@@ -112,10 +113,10 @@ License: MIT
 			}
 		}
 		ia_jsfiddle_add_caps();
+		$fp = fopen(WP_PLUGIN_URL . '/' . basename(dirname(__FILE__)) . '/assets/jsFiddle-skin-proxy/skins/ia-jsfiddle-skin-manager.php', "r");
 	}
 	//run when plug-in is activated
 	register_activation_hook(__FILE__,'ia_jsfiddle_set_options');
-	
 
 	//DEACTIVATION
 	
